@@ -16,6 +16,9 @@ class ViewController: UIViewController {
         proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!,
         identifier: "ranged region")
     
+    @IBOutlet weak var lblTest: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 3. Set the beacon manager's delegate
@@ -28,6 +31,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         self.beaconManager.startRangingBeacons(in: self.beaconRegion)
         self.beaconManager.startMonitoring(for: self.beaconRegion)
+        beaconManager.requestState(for: beaconRegion)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -43,17 +47,17 @@ extension ViewController: ESTBeaconManagerDelegate {
     func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon],
                        in region: CLBeaconRegion) {
         if let nearestBeacon = beacons.first {
-            print(nearestBeacon)
+            print(nearestBeacon.accuracy)
         }
     }
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-        print(region)
+        lblTest.text = "Entrei"
     }
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-        print(region)
+        lblTest.text = "Sai"
     }
     func beaconManager(_ manager: Any, didDetermineState state: CLRegionState, for region: CLBeaconRegion) {
-        print(region)
+        lblTest.text = "Mudou status"
     }
 }
 

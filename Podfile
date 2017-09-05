@@ -7,4 +7,8 @@ target 'My Beacon' do
 
   # Pods for My Beacon
 	pod 'EstimoteSDK'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
 end
