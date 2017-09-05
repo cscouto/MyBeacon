@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        Database.database().isPersistenceEnabled = true
+        
         self.beaconManager.delegate = self
         self.beaconManager.requestWhenInUseAuthorization()
         
@@ -54,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: ESTBeaconManagerDelegate{
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
         if let user = Auth.auth().currentUser {
+            
             let timeDB = Database.database().reference().child("Times")
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"

@@ -232,7 +232,13 @@
                             <constraint firstItem="ULD-V7-ZN3" firstAttribute="top" secondItem="cvW-dm-1Zn" secondAttribute="top" id="dKl-rV-3pr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Meus Horarios" id="QgJ-gf-4E2"/>
+                    <navigationItem key="navigationItem" title="Meus Horarios" id="QgJ-gf-4E2">
+                        <barButtonItem key="rightBarButtonItem" title="Sair" id="L5E-Zz-ag2">
+                            <connections>
+                                <action selector="logout:" destination="fje-ia-n5g" id="pdY-4J-95R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ULD-V7-ZN3" id="Ye1-Ja-Ngg"/>
                     </connections>
@@ -383,7 +389,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J0O-vZ-iP6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qlq-4D-okH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qlq-4D-okH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

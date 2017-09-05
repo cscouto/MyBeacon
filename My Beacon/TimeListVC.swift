@@ -14,13 +14,25 @@ class TimeListVC: UIViewController{
     //outlets
     @IBOutlet weak var tableView: UITableView!
     
+    //vars
+    var times = [String]()
+    
+    //system functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated:true)
         retrieveTime()
     }
     
-    //vars
-    var times = [String]()
+    //actions
+    @IBAction func logout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            self.navigationController?.popToRootViewController(animated: true)
+        }catch{
+            
+        }
+    }
     
     //custom functions
     func retrieveTime(){
