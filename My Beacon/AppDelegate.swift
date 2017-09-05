@@ -14,9 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let beaconManager = ESTBeaconManager()
-    let beaconRegion = CLBeaconRegion(
-        proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!,
-        identifier: "ranged region")
+    let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 54094, minor: 58015, identifier: "Ponto")
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -55,10 +53,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: ESTBeaconManagerDelegate{
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-        
+        if let user = Auth.auth().currentUser {
+            let timeDB = Database.database().reference().child("Times")
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
+            let dateString = dateFormatter.string(from: Date())
+            let dict = ["message": dateString]
+            timeDB.child(user.uid).setValue(dict){
+                (error, ref) in
+                if error == nil {
+                }
+            }
+        }
     }
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-        
+        if let user = Auth.auth().currentUser {
+            let timeDB = Database.database().reference().child("Times")
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
+            let dateString = dateFormatter.string(from: Date())
+            let dict = ["message": dateString]
+            timeDB.child(user.uid).childByAutoId().setValue(dict){
+                (error, ref) in
+                if error == nil {
+                }
+            }
+        }
+    }
+    func beaconManager(_ manager: Any, didChange status: CLAuthorizationStatus) {
+        beaconManager.startMonitoring(for: beaconRegion)
+        //beaconManager.startRangingBeacons(in: beaconRegion)
+    }
+    func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        if let user = Auth.auth().currentUser {
+            let timeDB = Database.database().reference().child("Times")
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
+            let dateString = dateFormatter.string(from: Date())
+            let dict = ["message": dateString]
+            timeDB.child(user.uid).childByAutoId().setValue(dict){
+                (error, ref) in
+                if error == nil {
+                }
+            }
+        }
     }
 }
 

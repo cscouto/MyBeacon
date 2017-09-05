@@ -180,7 +180,7 @@
         <!--Meus Horarios-->
         <scene sceneID="moF-ym-Z50">
             <objects>
-                <viewController id="fje-ia-n5g" sceneMemberID="viewController">
+                <viewController id="fje-ia-n5g" customClass="TimeListVC" customModule="My_Beacon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a2S-MS-scY"/>
                         <viewControllerLayoutGuide type="bottom" id="09H-9z-Xez"/>
@@ -218,6 +218,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fje-ia-n5g" id="sYJ-RW-uaN"/>
+                                    <outlet property="delegate" destination="fje-ia-n5g" id="NFj-a0-tAb"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -229,6 +233,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Meus Horarios" id="QgJ-gf-4E2"/>
+                    <connections>
+                        <outlet property="tableView" destination="ULD-V7-ZN3" id="Ye1-Ja-Ngg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmn-3B-ACn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
