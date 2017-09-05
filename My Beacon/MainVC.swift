@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainVC.swift
 //  My Beacon
 //
 //  Created by Tiago Do Couto on 04/09/17.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class MainVC: UIViewController{
 
     let beaconManager = ESTBeaconManager()
     let beaconRegion = CLBeaconRegion(
@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(UUID().uuidString)
         // 3. Set the beacon manager's delegate
         self.beaconManager.delegate = self
         // 4. We need to request this authorization for every beacon manager
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: ESTBeaconManagerDelegate {
+extension MainVC: ESTBeaconManagerDelegate {
     func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon],
                        in region: CLBeaconRegion) {
         if let nearestBeacon = beacons.first {

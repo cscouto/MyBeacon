@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="My_Beacon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="My_Beacon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,25 +21,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3P-Ky-7S9">
-                                <rect key="frame" x="166" y="323" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginScreen" translatesAutoresizingMaskIntoConstraints="NO" id="fIf-2k-SjS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.4257834255695343" green="0.62905824184417725" blue="0.76085519790649414" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-v0-u1X">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.42745098039215684" green="0.62745098039215685" blue="0.76078431372549016" alpha="0.71377090669014087" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="h3P-Ky-7S9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="F29-5Y-sI4"/>
-                            <constraint firstItem="h3P-Ky-7S9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FPx-E3-nLl"/>
+                            <constraint firstItem="fIf-2k-SjS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="69G-ca-5Pf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fIf-2k-SjS" secondAttribute="bottom" id="Chm-ND-fgS"/>
+                            <constraint firstAttribute="trailing" secondItem="fIf-2k-SjS" secondAttribute="trailing" id="Ncu-XL-NVp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ahW-v0-u1X" secondAttribute="bottom" id="Qf9-na-rNZ"/>
+                            <constraint firstAttribute="trailing" secondItem="ahW-v0-u1X" secondAttribute="trailing" id="Td5-Bz-m8W"/>
+                            <constraint firstItem="fIf-2k-SjS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VIx-iR-BKp"/>
+                            <constraint firstItem="ahW-v0-u1X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="b1K-eM-AGh"/>
+                            <constraint firstItem="ahW-v0-u1X" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="nYa-76-a6T"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="lblTest" destination="h3P-Ky-7S9" id="5FS-EA-qFm"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="loginScreen" width="1080" height="1920"/>
+    </resources>
 </document>
