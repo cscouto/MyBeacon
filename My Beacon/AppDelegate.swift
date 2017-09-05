@@ -7,16 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let beaconManager = ESTBeaconManager()
+    let beaconRegion = CLBeaconRegion(
+        proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!,
+        identifier: "ranged region")
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        
+        self.beaconManager.delegate = self
+        self.beaconManager.requestWhenInUseAuthorization()
+        
         return true
     }
 
@@ -42,6 +51,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
 
+extension AppDelegate: ESTBeaconManagerDelegate{
+    func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
+        
+    }
+    func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
+        
+    }
 }
 
