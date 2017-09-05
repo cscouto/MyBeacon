@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class RegisterVC: UIViewController {
     
@@ -25,11 +26,11 @@ class RegisterVC: UIViewController {
     //actions
     @IBAction func doRegister(_ sender: Any) {
         guard let login = txtLogin.text, login.characters.count > 0 else {
-            ///todo
+            SVProgressHUD.showError(withStatus: "Informe o email.")
             return
         }
         guard let password = txtPassword.text, password.characters.count > 0 else {
-            ///todo
+            SVProgressHUD.showError(withStatus: "Informe o password.")
             return
         }
         
@@ -38,7 +39,7 @@ class RegisterVC: UIViewController {
             if error == nil {
                 self.navigationController?.popViewController(animated: true)
             }else{
-                ///todo
+                 SVProgressHUD.showError(withStatus: "Problema ao registrar-se, tente novamente.")
             }
         }
     }

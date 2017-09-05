@@ -16,6 +16,7 @@
 		A35B6BEA1F5DF2FA007D0EEB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A35B6BE91F5DF2FA007D0EEB /* CoreGraphics.framework */; };
 		A3717EAA1F5EEE5900351096 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3717EA91F5EEE5900351096 /* GoogleService-Info.plist */; };
 		A3717EAD1F5F0DE800351096 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3717EAC1F5F0DE800351096 /* RegisterVC.swift */; };
+		A3717EAF1F5F192700351096 /* TimeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3717EAE1F5F192700351096 /* TimeListVC.swift */; };
 		B52B2B1DE0D0B1CB74BC4254 /* Pods_My_Beacon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CD97AD104D8F15226E979A /* Pods_My_Beacon.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		A3717EA61F5ED2B700351096 /* My Beacon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My Beacon-Bridging-Header.h"; sourceTree = "<group>"; };
 		A3717EA91F5EEE5900351096 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3717EAC1F5F0DE800351096 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		A3717EAE1F5F192700351096 /* TimeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeListVC.swift; sourceTree = "<group>"; };
 		F73907B79A721496B07780F4 /* Pods-My Beacon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Beacon.release.xcconfig"; path = "Pods/Target Support Files/Pods-My Beacon/Pods-My Beacon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +87,6 @@
 		A35B6BC11F5DE9B4007D0EEB /* My Beacon */ = {
 			isa = PBXGroup;
 			children = (
-				A35B6BC21F5DE9B4007D0EEB /* AppDelegate.swift */,
 				A3717EAB1F5F0DCD00351096 /* Controller */,
 				A35B6BC61F5DE9B4007D0EEB /* Main.storyboard */,
 				A35B6BC91F5DE9B4007D0EEB /* Assets.xcassets */,
@@ -110,8 +111,10 @@
 		A3717EAB1F5F0DCD00351096 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A35B6BC21F5DE9B4007D0EEB /* AppDelegate.swift */,
 				A35B6BC41F5DE9B4007D0EEB /* MainVC.swift */,
 				A3717EAC1F5F0DE800351096 /* RegisterVC.swift */,
+				A3717EAE1F5F192700351096 /* TimeListVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-My Beacon/Pods-My Beacon-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -216,6 +220,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -267,6 +272,7 @@
 				A3717EAD1F5F0DE800351096 /* RegisterVC.swift in Sources */,
 				A35B6BC51F5DE9B4007D0EEB /* MainVC.swift in Sources */,
 				A35B6BC31F5DE9B4007D0EEB /* AppDelegate.swift in Sources */,
+				A3717EAF1F5F192700351096 /* TimeListVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

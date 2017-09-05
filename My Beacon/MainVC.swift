@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class MainVC: UIViewController{
     
@@ -38,11 +39,11 @@ class MainVC: UIViewController{
     //actions
     @IBAction func doLogin(_ sender: Any) {
         guard let login = txtLogin.text, login.characters.count > 0 else {
-            ///todo
+            SVProgressHUD.showError(withStatus: "Informe o email.")
             return
         }
         guard let password = txtPassword.text, password.characters.count > 0 else {
-            ///todo
+            SVProgressHUD.showError(withStatus: "Informe a senha.")
             return
         }
         Auth.auth().signIn(withEmail: login, password: password){
@@ -50,7 +51,7 @@ class MainVC: UIViewController{
             if error == nil {
                 self.performSegue(withIdentifier: "showTimeList", sender: nil)
             }else{
-                ///todo
+                SVProgressHUD.showError(withStatus: "Problema com autenticação, tente novamente.")
             }
         }
         
