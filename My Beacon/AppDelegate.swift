@@ -52,13 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
-    func storeDatabase(){
+    func storeDatabase(local: String){
         if let user = Auth.auth().currentUser {
             let timeDB = Database.database().reference().child("Times")
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
             let dateString = dateFormatter.string(from: Date())
-            let dict = ["message": dateString]
+            let dict = ["horario": dateString, "local": local]
             timeDB.child(user.uid).childByAutoId().setValue(dict){
                 (error, ref) in
                 if error == nil {
@@ -89,12 +89,16 @@ extension AppDelegate: ESTBeaconManagerDelegate{
                     if lastBeacon !=  nearestBeacon {
                         lastBeacon = nearestBeacon
                         //createNotification()
-                        storeDatabase()
+                        if lastBeacon?.major == 54094 && lastBeacon?.minor == 58015 {
+                            storeDatabase(local: "Entrada")
+                        }
                     }
                 }else{
                     lastBeacon = nearestBeacon
                     //createNotification()
-                    storeDatabase()
+                    if lastBeacon?.major == 54094 && lastBeacon?.minor == 58015 {
+                        storeDatabase(local: "Entrada")
+                    }
                 }
                 break
                 

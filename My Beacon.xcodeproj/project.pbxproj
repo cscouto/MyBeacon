@@ -17,6 +17,7 @@
 		A3717EAA1F5EEE5900351096 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3717EA91F5EEE5900351096 /* GoogleService-Info.plist */; };
 		A3717EAD1F5F0DE800351096 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3717EAC1F5F0DE800351096 /* RegisterVC.swift */; };
 		A3717EAF1F5F192700351096 /* TimeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3717EAE1F5F192700351096 /* TimeListVC.swift */; };
+		A3754F831F605D0700F27457 /* Horario.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3754F821F605D0700F27457 /* Horario.swift */; };
 		B52B2B1DE0D0B1CB74BC4254 /* Pods_My_Beacon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CD97AD104D8F15226E979A /* Pods_My_Beacon.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		A3717EA91F5EEE5900351096 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3717EAC1F5F0DE800351096 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		A3717EAE1F5F192700351096 /* TimeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeListVC.swift; sourceTree = "<group>"; };
+		A3754F821F605D0700F27457 /* Horario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Horario.swift; sourceTree = "<group>"; };
 		F73907B79A721496B07780F4 /* Pods-My Beacon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Beacon.release.xcconfig"; path = "Pods/Target Support Files/Pods-My Beacon/Pods-My Beacon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 		A35B6BC11F5DE9B4007D0EEB /* My Beacon */ = {
 			isa = PBXGroup;
 			children = (
+				A3754F811F605CF600F27457 /* Model */,
 				A3717EAB1F5F0DCD00351096 /* Controller */,
 				A35B6BC61F5DE9B4007D0EEB /* Main.storyboard */,
 				A35B6BC91F5DE9B4007D0EEB /* Assets.xcassets */,
@@ -117,6 +120,14 @@
 				A3717EAE1F5F192700351096 /* TimeListVC.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		A3754F811F605CF600F27457 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A3754F821F605D0700F27457 /* Horario.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		CD3D2471BF3103113E319418 /* Pods */ = {
@@ -275,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3717EAD1F5F0DE800351096 /* RegisterVC.swift in Sources */,
+				A3754F831F605D0700F27457 /* Horario.swift in Sources */,
 				A35B6BC51F5DE9B4007D0EEB /* MainVC.swift in Sources */,
 				A35B6BC31F5DE9B4007D0EEB /* AppDelegate.swift in Sources */,
 				A3717EAF1F5F192700351096 /* TimeListVC.swift in Sources */,

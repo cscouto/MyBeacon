@@ -15,7 +15,7 @@ class TimeListVC: UIViewController{
     @IBOutlet weak var tableView: UITableView!
     
     //vars
-    var times = [String]()
+    var times = [Horario]()
     let messageDB = Database.database().reference().child("Times").child((Auth.auth().currentUser?.uid)!)
     
     //system functions
@@ -41,15 +41,21 @@ class TimeListVC: UIViewController{
         messageDB.observe(.childAdded, with: {
             (snapshot) in
             let snap: [String: String] = snapshot.value as! [String : String]
-            self.times.append(snap["message"]!)
-            let index = self.times.index(of: snap["message"]!)
+            var horario = Horario()
+            horario.horario = snap["horario"]
+            horario.local = snap["local"]
+            self.times.append(horario)
+            let index = self.times.index(where: {$0.local == horario.local && $0.horario == horario.horario})
             let indexPath = IndexPath(row: index!, section: 0)
             self.tableView.insertRows(at: [indexPath], with: .bottom)
         })
         messageDB.observe(.childRemoved, with: {
             (snapshot) in
             let snap: [String: String] = snapshot.value as! [String : String]
-            let index = self.times.index(of: snap["message"]!)
+            var horario = Horario()
+            horario.horario = snap["horario"]
+            horario.local = snap["local"]
+            let index = self.times.index(where: {$0.local == horario.local && $0.horario == horario.horario})
             self.times.remove(at: index!)
             let indexPath = IndexPath(row: index!, section: 0)
             self.tableView.deleteRows(at: [indexPath], with: .left)
@@ -67,7 +73,8 @@ extension TimeListVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath)
-        cell.detailTextLabel?.text = times[indexPath.row]
+        cell.detailTextLabel?.text = times[indexPath.row].horario
+        cell.textLabel?.text = times[indexPath.row].local
         return cell
     }
 }
