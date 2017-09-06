@@ -33,8 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         for beaconRegion in beaconRegions{
             beaconManager.startMonitoring(for: beaconRegion)
+            //beaconManager.startRangingBeacons(in: beaconRegion)
         }
-        //beaconManager.startRangingBeacons(in: beaconRegion)
+        
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options:[.alert, .sound]) { (granted, error) in }
@@ -86,7 +87,7 @@ extension AppDelegate: ESTBeaconManagerDelegate{
             case .immediate:
                 
                 if lastBeacon != nil {
-                    if lastBeacon !=  nearestBeacon {
+                    if lastBeacon?.major !=  nearestBeacon.major  && lastBeacon?.minor !=  nearestBeacon.minor {
                         lastBeacon = nearestBeacon
                         //createNotification()
                         if lastBeacon?.major == 54094 && lastBeacon?.minor == 58015 {
