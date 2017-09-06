@@ -24,7 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Database.database().isPersistenceEnabled = true
         
         self.beaconManager.delegate = self
-        self.beaconManager.requestWhenInUseAuthorization()
+        //self.beaconManager.requestWhenInUseAuthorization()
+        self.beaconManager.requestAlwaysAuthorization()
+        
+        beaconManager.startMonitoring(for: beaconRegion)
         
         return true
     }
@@ -55,49 +58,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: ESTBeaconManagerDelegate{
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-        if let user = Auth.auth().currentUser {
-            
-            let timeDB = Database.database().reference().child("Times")
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
-            let dateString = dateFormatter.string(from: Date())
-            let dict = ["message": dateString]
-            timeDB.child(user.uid).setValue(dict){
-                (error, ref) in
-                if error == nil {
-                }
-            }
+        if CLLocationManager.isRangingAvailable() {
+            beaconManager.startRangingBeacons(in: region)
         }
     }
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-        if let user = Auth.auth().currentUser {
-            let timeDB = Database.database().reference().child("Times")
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
-            let dateString = dateFormatter.string(from: Date())
-            let dict = ["message": dateString]
-            timeDB.child(user.uid).childByAutoId().setValue(dict){
-                (error, ref) in
-                if error == nil {
-                }
-            }
-        }
-    }
-    func beaconManager(_ manager: Any, didChange status: CLAuthorizationStatus) {
-        beaconManager.startMonitoring(for: beaconRegion)
-        //beaconManager.startRangingBeacons(in: beaconRegion)
+        beaconManager.stopRangingBeacons(in: beaconRegion)
     }
     func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        if let user = Auth.auth().currentUser {
-            let timeDB = Database.database().reference().child("Times")
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
-            let dateString = dateFormatter.string(from: Date())
-            let dict = ["message": dateString]
-            timeDB.child(user.uid).childByAutoId().setValue(dict){
-                (error, ref) in
-                if error == nil {
+        if beacons.count > 0 {
+            let nearestBeacon = beacons.first!
+            
+            switch nearestBeacon.proximity {  
+            case .immediate:
+                if let user = Auth.auth().currentUser {
+                    let timeDB = Database.database().reference().child("Times")
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
+                    let dateString = dateFormatter.string(from: Date())
+                    let dict = ["message": dateString]
+                    timeDB.child(user.uid).childByAutoId().setValue(dict){
+                        (error, ref) in
+                        if error == nil {
+                        }
+                    }
                 }
+                break
+                
+            default:
+                break
             }
         }
     }

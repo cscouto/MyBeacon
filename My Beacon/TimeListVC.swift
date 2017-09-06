@@ -16,6 +16,7 @@ class TimeListVC: UIViewController{
     
     //vars
     var times = [String]()
+    let messageDB = Database.database().reference().child("Times").child((Auth.auth().currentUser?.uid)!)
     
     //system functions
     override func viewDidLoad() {
@@ -36,9 +37,14 @@ class TimeListVC: UIViewController{
     
     //custom functions
     func retrieveTime(){
-        let messageDB = Database.database().reference().child("Times").child((Auth.auth().currentUser?.uid)!)
         messageDB.keepSynced(true)
         messageDB.observe(.childAdded, with: {
+            (snapshot) in
+            let snap: [String: String] = snapshot.value as! [String : String]
+            self.times.append(snap["message"]!)
+            self.tableView.reloadData()
+        })
+        messageDB.observe(.childRemoved, with: {
             (snapshot) in
             let snap: [String: String] = snapshot.value as! [String : String]
             self.times.append(snap["message"]!)
