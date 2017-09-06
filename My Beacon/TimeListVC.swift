@@ -42,13 +42,17 @@ class TimeListVC: UIViewController{
             (snapshot) in
             let snap: [String: String] = snapshot.value as! [String : String]
             self.times.append(snap["message"]!)
-            self.tableView.reloadData()
+            let index = self.times.index(of: snap["message"]!)
+            let indexPath = IndexPath(row: index!, section: 0)
+            self.tableView.insertRows(at: [indexPath], with: .bottom)
         })
         messageDB.observe(.childRemoved, with: {
             (snapshot) in
             let snap: [String: String] = snapshot.value as! [String : String]
-            self.times.append(snap["message"]!)
-            self.tableView.reloadData()
+            let index = self.times.index(of: snap["message"]!)
+            self.times.remove(at: index!)
+            let indexPath = IndexPath(row: index!, section: 0)
+            self.tableView.deleteRows(at: [indexPath], with: .left)
         })
     }
     

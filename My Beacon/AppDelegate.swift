@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.beaconManager.requestAlwaysAuthorization()
         
         beaconManager.startMonitoring(for: beaconRegion)
+        //beaconManager.startRangingBeacons(in: beaconRegion)
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options:[.alert, .sound]) { (granted, error) in }
         
         return true
     }
@@ -65,12 +70,21 @@ extension AppDelegate: ESTBeaconManagerDelegate{
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
         beaconManager.stopRangingBeacons(in: beaconRegion)
     }
+    
     func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if beacons.count > 0 {
             let nearestBeacon = beacons.first!
             
             switch nearestBeacon.proximity {  
             case .immediate:
+                let content = UNMutableNotificationContent()
+                content.title = "Forget Me Not"
+                content.body = "Are you forgetting something?"
+                content.sound = .default()
+                
+                let request = UNNotificationRequest(identifier: "ForgetMeNot", content: content, trigger: nil)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                
                 if let user = Auth.auth().currentUser {
                     let timeDB = Database.database().reference().child("Times")
                     let dateFormatter = DateFormatter()
