@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let beaconManager = ESTBeaconManager()
-    var lastBeacon: CLBeacon?
     var beaconRegions = [CLBeaconRegion]()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -85,21 +84,8 @@ extension AppDelegate: ESTBeaconManagerDelegate{
             
             switch nearestBeacon.proximity {  
             case .immediate:
-                
-                if lastBeacon != nil {
-                    if lastBeacon?.major !=  nearestBeacon.major  && lastBeacon?.minor !=  nearestBeacon.minor {
-                        lastBeacon = nearestBeacon
-                        //createNotification()
-                        if lastBeacon?.major == 54094 && lastBeacon?.minor == 58015 {
-                            storeDatabase(local: "Entrada")
-                        }
-                    }
-                }else{
-                    lastBeacon = nearestBeacon
-                    //createNotification()
-                    if lastBeacon?.major == 54094 && lastBeacon?.minor == 58015 {
-                        storeDatabase(local: "Entrada")
-                    }
+                if nearestBeacon.major == 54094 && nearestBeacon.minor == 58015 {
+                    storeDatabase(local: "Entrada")
                 }
                 break
                 
